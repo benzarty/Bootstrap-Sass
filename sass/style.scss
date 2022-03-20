@@ -1,0 +1,51 @@
+.text {
+  color: red;
+  font-size: 20px;
+}
+
+textarea {
+  @extend .text;
+}
+
+h1 {
+  @extend .text;
+}
+
+@mixin inline-block($p1: 3px, $p2: solid, $p3: yellow) {
+  border: $p1 $p2 $p3;
+}
+#box {
+  @include inline-block();
+}
+
+@function functiongo($color) {
+  @if ($color == white) {
+    @return black;
+  } @else {
+    @return white;
+  }
+}
+
+h1 {
+  background-color: functiongo(white);
+}
+h2 {
+  background-color: functiongo(black);
+}
+$list_name: HTML5, CSS3, JAVA, React;
+
+@function first($list) {
+  @return nth($list, 1);
+}
+.text2 {
+  content: first($list_name);
+}
+
+@function last($list) {
+  // @return nth($list,-1)
+  @return nth($list, length($list));
+}
+
+.text2 {
+  content: last($list_name);
+}
